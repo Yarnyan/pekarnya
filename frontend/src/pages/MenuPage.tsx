@@ -1,8 +1,11 @@
 import React from 'react';
-import {MenuTable} from "../module/menu/menuTable/MenuTable.tsx";
-
+import { MenuTable } from "../module/menu/menuTable/MenuTable.tsx";
+import Breadcrumb from '../module/breadcrumb/Breadcrumb.tsx';
 export const MenuPage = () => {
     return (
-        <MenuTable/>
+        <div>
+            <Breadcrumb />
+            <MenuTable />
+        </div>
     );
 };

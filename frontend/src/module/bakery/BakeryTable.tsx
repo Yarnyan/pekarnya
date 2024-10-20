@@ -1,5 +1,7 @@
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import { CustomTable } from "../customTable/CustomTable";
+import { useQuery } from 'react-query';
+import Loader from "../../components/loader/Loader";
 
 type Props = {
     onOpen: () => void;
@@ -50,17 +52,28 @@ const data: Personal[] = [
         email: 'vanya228@mail.ru',
         role: 'Администратор',
         visible: true,
-        id: '5' 
+        id: '5'
     }
 ]
 
-export const BakeryTable = ({onOpen}: Props) => {
+export const BakeryTable = ({ onOpen }: Props) => {
+    const { isLoading, error, data } = useQuery(
+        'repoData',
+        () =>
+            fetch(
+                'http://localhost:5137/api/Bakery/bakery'
+            ).then((response) => response.json())
+    );
+    if(isLoading) {
+        return <Loader />
+    }
+    console.log(data)
     return (
         <div className="mt-8">
             <div className="w-full flex justify-end">
                 <button onClick={onOpen} className="p-2 bg-[#6495ED] w-[100px] text-[#fff] text-[14px rounded hover:bg-[#728FCE] duration-300">Создать</button>
             </div>
-            <div className="mt-4">
+            {/* <div className="mt-4">
                 <CustomTable
                     columnNames={['Номер', 'Название', 'Адрес']}
                     rows={data.map(row => {
@@ -74,7 +87,7 @@ export const BakeryTable = ({onOpen}: Props) => {
                         </TableRow>
                     })}
                 />
-            </div>
+            </div> */}
         </div>
     );
 };
