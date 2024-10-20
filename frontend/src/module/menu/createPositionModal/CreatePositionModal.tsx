@@ -1,25 +1,21 @@
 import {FormProvider, SubmitHandler, useForm} from 'react-hook-form'
 import {ControlledTextField} from "../../../components/controlled-text-field/Controlled-text-field.tsx";
 import {ControlledSelect} from "../../../components/controlled-select/Controlled-select.tsx";
-import styles from './PersonalModal.module.css'
+import styles from './CreatePositionModal.module.css'
 import {Button} from "@mui/material";
-import {useForceUpdate} from "../../../hooks/useForceUpdate.tsx";
 
 interface Inputs {
     name: string
     role: string
     bakery: string
-    email?: string
+    quantity: number
 }
 
-export const PersonalModal = () => {
-    const forceUpdate = useForceUpdate()
-
+export const CreatePositionModal = () => {
     const formMethods = useForm<Inputs>({mode: 'onChange'})
 
     const {
         handleSubmit,
-        getValues
     } = formMethods
 
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
@@ -40,7 +36,7 @@ export const PersonalModal = () => {
                         labelType='moving'
                         type='text'
                         name='name'
-                        label='ФИО'
+                        label='Название позиции'
                         InputProps={{
                             sx: {
                                 borderRadius: '12px',
@@ -55,7 +51,6 @@ export const PersonalModal = () => {
                             width: '320px',
                             borderRadius: '12px',
                         }}
-                        handleChange={() => forceUpdate()}
                         label='Роль'
                         name='role'
                         options={
@@ -70,45 +65,40 @@ export const PersonalModal = () => {
                             required: 'Поле не заполнено',
                         }}
                     />
-                    {
-                        getValues().role === "Управляющий" &&
-                        <ControlledTextField
-                            sx={{
-                                width: '100%',
-                            }}
-                            labelType='moving'
-                            type='email'
-                            name='email'
-                            label='email'
-                            InputProps={{
-                                sx: {
-                                    borderRadius: '12px',
-                                },
-                            }}
-                            rules={{
-                                required: 'Поле не заполнено',
-                            }}
-                        />
-                    }
-                    <>
-                        <ControlledTextField
-                            sx={{
-                                width: '100%',
-                            }}
-                            labelType='moving'
-                            type='text'
-                            name='bakery'
-                            label='Пекарня'
-                            InputProps={{
-                                sx: {
-                                    borderRadius: '12px',
-                                },
-                            }}
-                            rules={{
-                                required: 'Поле не заполнено',
-                            }}
-                        />
-                    </>
+                    <ControlledTextField
+                        sx={{
+                            width: '100%',
+                        }}
+                        labelType='moving'
+                        type='text'
+                        name='bakery'
+                        label='Пекарня'
+                        InputProps={{
+                            sx: {
+                                borderRadius: '12px',
+                            },
+                        }}
+                        rules={{
+                            required: 'Поле не заполнено',
+                        }}
+                    />
+                    <ControlledTextField
+                        sx={{
+                            width: '100%',
+                        }}
+                        labelType='moving'
+                        type='number'
+                        name='quantity'
+                        label='Количество'
+                        InputProps={{
+                            sx: {
+                                borderRadius: '12px',
+                            },
+                        }}
+                        rules={{
+                            required: 'Поле не заполнено',
+                        }}
+                    />
                     <Button type={'submit'} variant={'contained'}>Принять</Button>
                 </form>
             </FormProvider>

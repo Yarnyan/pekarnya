@@ -13,67 +13,65 @@ import {
 import {CustomTable} from "../../customTable/CustomTable.tsx";
 import {useState} from "react";
 import Modal from "@mui/material/Modal";
-import {PersonalModal} from "../PersonalModal/PersonalModal.tsx";
+import {CreatePositionModal} from "../CreatePositionModal/CreatePositionModal.tsx";
+import {UpdateQuantityModal} from "../updateQuantityModal/UpdateQuantityModal.tsx";
 
-export interface Personal {
+export interface Product {
     name: string
     bakery: string
     role: string
-    email?: string
-    visible: boolean
+    quantity: number
     id: string
 }
 
-const personal: Personal[] = [
+const personal: Product[] = [
     {
-        name: 'Ivan Ivanov',
+        name: 'бургер',
         bakery: 'пекарня 1',
         role: 'Пекарь',
-        visible: true,
+        quantity: 3,
         id: '1'
     },
     {
-        name: 'Ivan Ivanov2',
+        name: 'торт',
         bakery: 'пекарня 2',
-        email: 'vanya@mail.com',
-        role: 'Управляющий',
-        visible: true,
+        role: 'Кондитер',
+        quantity: 12,
         id: '2'
     },
     {
-        name: 'Ivan Ivanov3',
+        name: 'пицца',
         bakery: 'пекарня 3',
-        role: 'Кассир',
-        visible: true,
+        role: 'Пекарь',
+        quantity: 7,
         id: '3'
     },
     {
-        name: 'Ivan Ivanov4',
+        name: 'хлеб белый',
         bakery: 'пекарня 4',
         role: 'Пекарь',
-        visible: false,
+        quantity: 77,
         id: '4'
     },
     {
-        name: 'Ivan Ivanov5',
+        name: 'ПИРОЖНОЕ КАРТОШКА!',
         bakery: 'пекарня 1',
-        email: 'vanya228@mail.ru',
-        role: 'Управляющий',
-        visible: true,
+        role: 'Кондитер',
+        quantity: 41,
         id: '5'
     }
 ]
 
 const bakeries: string[] = ['пекарня 1', 'пекарня 2', 'пекарня 3', 'пекарня 4',]
 
-export const PersonalTable = () => {
+export const MenuTable = () => {
     const [bakery, setBakery] = useState<string | undefined>(undefined)
     const [role, setRole] = useState<string | undefined>(undefined)
-    const [visible, setVisible] = useState<boolean>(true)
     const [isOpen, setIsOpen] = useState(false)
+    const [changeQuantity, setChangeQuantity] = useState<null | {name: string, quantity: number}>(null)
 
     const data = personal.filter(p => {
-        return (role ? p.role === role : true) && (bakery ? p.bakery === bakery : true) && (visible ? p.visible : true)
+        return (role ? p.role === role : true) && (bakery ? p.bakery === bakery : true)
     })
 
     return (
@@ -111,38 +109,41 @@ export const PersonalTable = () => {
                         <MenuItem value={'Пекарь'}>Пекарь</MenuItem>
                     </Select>
                 </FormControl>
-                <Box sx={{display: 'flex', alignItems: 'center', gap: '8px'}}>
-                    <Typography>{visible ? 'Показать скрытых' : "Убрать скрытых" }</Typography>
-                    <Switch checked={!visible} onClick={() => setVisible(!visible)}/>
-                </Box>
-                <Button onClick={() => setIsOpen(true)} variant={"outlined"}>Создать пользователя</Button>
+                <Button onClick={() => setIsOpen(true)} variant={"outlined"}>Создать позицию в меню</Button>
             </Box>
             <CustomTable
-                columnNames={['ФИО', 'Email', 'Роль', 'Пекарня', '',]}
+                columnNames={['Позиция', 'Количество', 'Роль', 'Пекарня', '']}
                 rows={data.map(row => {
                     return <TableRow
                         key={row.id}
                         sx={{'&:last-child td, &:last-child th': {border: 0}}}
                     >
                         <TableCell align="left">{row.name}</TableCell>
-                        <TableCell align="left">{row.email || "no Email"}</TableCell>
+                        <TableCell
+                            sx={{cursor: 'pointer'}}
+                            align="left"
+                            onClick={() => setChangeQuantity({name: row.name, quantity: row.quantity})}
+                        >
+                            {row.quantity}
+                        </TableCell>
                         <TableCell align="left">{row.role}</TableCell>
                         <TableCell align="left">{row.bakery}</TableCell>
-                        <TableCell align="left">
-                            {row.visible ?
-                                <Button>Скрыть</Button>
-                                :
-                                <Button>Раскрыть</Button>
-                            }
-                        </TableCell>
+                        <TableCell align="left"><Button>Удалить</Button></TableCell>
                     </TableRow>
                 })}
             />
             <Modal open={isOpen} onClose={() => setIsOpen(false)} sx={{display: "flex", alignItems: "center", justifyContent: "center"}}>
                 <div>
-                    <PersonalModal/>
+                    <CreatePositionModal/>
                 </div>
             </Modal>
+            {changeQuantity &&
+                <Modal open={!!changeQuantity} onClose={() => setChangeQuantity(null)} sx={{display: "flex", alignItems: "center", justifyContent: "center"}}>
+                    <div>
+                        <UpdateQuantityModal positionName={changeQuantity!.name} positionQuantity={changeQuantity!.quantity}/>
+                    </div>
+                </Modal>
+            }
         </Box>
     );
 };

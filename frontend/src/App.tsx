@@ -6,6 +6,7 @@ import DesignPage from "./pages/DesignPage"
 import PiePage from "./pages/PiePage"
 import BakeryPage from "./pages/BakeryPage"
 import {PersonnelPage} from "./pages/PersonnelPage.tsx";
+import {MenuPage} from "./pages/MenuPage.tsx";
 function App() {
 
 
@@ -20,6 +21,7 @@ function App() {
             <Route path="/pie/create" element={<PiePage />}></Route>
             <Route path="/bakery/create" element={<BakeryPage />}></Route>
               <Route path="/personnel/employees" element={<PersonnelPage />}></Route>
+              <Route path="/menu" element={<MenuPage />}></Route>
           </Routes>
         </RootLayout>
       </BrowserRouter>
