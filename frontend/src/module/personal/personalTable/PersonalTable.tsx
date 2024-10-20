@@ -12,6 +12,8 @@ import {
 } from "@mui/material";
 import {CustomTable} from "../../customTable/CustomTable.tsx";
 import {useState} from "react";
+import Modal from "@mui/material/Modal";
+import {PersonalModal} from "../PersonalModal/PersonalModal.tsx";
 
 export interface Personal {
     name: string
@@ -68,6 +70,7 @@ export const PersonalTable = () => {
     const [bakery, setBakery] = useState<string | undefined>(undefined)
     const [role, setRole] = useState<string | undefined>(undefined)
     const [visible, setVisible] = useState<boolean>(true)
+    const [isOpen, setIsOpen] = useState(false)
 
     const data = personal.filter(p => {
         return (role ? p.role === role : true) && (bakery ? p.bakery === bakery : true) && (visible ? p.visible : true)
@@ -112,6 +115,7 @@ export const PersonalTable = () => {
                     <Typography>{visible ? 'Показать скрытых' : "Убрать скрытых" }</Typography>
                     <Switch checked={!visible} onClick={() => setVisible(!visible)}/>
                 </Box>
+                <Button onClick={() => setIsOpen(true)} variant={"outlined"}>Создать пользователя</Button>
             </Box>
             <CustomTable
                 columnNames={['ФИО', 'Email', 'Роль', 'Пекарня', '',]}
@@ -134,6 +138,9 @@ export const PersonalTable = () => {
                     </TableRow>
                 })}
             />
+            <Modal open={isOpen}>
+                <PersonalModal/>
+            </Modal>
         </Box>
     );
 };
