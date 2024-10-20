@@ -65,7 +65,10 @@ export default function SideBar({ }: Props) {
               <MenuIcon sx={{width: '30px', height: '30px'}} />
             </button>
           ) : (
-            <h1 className='text-xl font-normal text-[var(--textColor)] mt-2 ml-4 sm:ml-0'>Manager.ai</h1>
+            <div>
+              <h1 className='text-xl font-normal text-[var(--textColor)] mt-2 ml-4 sm:ml-0'>Manager.ai</h1>
+              <Link to={'/personal'}>Персонал</Link>
+            </div>
           )}
         </div>
       </div>
