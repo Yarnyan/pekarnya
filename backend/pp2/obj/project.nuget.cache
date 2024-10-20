@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "r3kLt3JnHgSds5Di2Gyh7OGpuZ7DCvDdwma70hcsud1Mc7KLRpqQ0ft8vVuMSu1s5jZlIZSbrmUrmFxLZkLKYw==",
+  "dgSpecHash": "kzqpd27AWH4c4fr/4I1kGt1CVbg7UrMf3s5rp9ZeU4+VbGWLsU6twyj2m11k0pLsHKojCD3xQ/qyl3K6JOYuEg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\hoptd\\source\\repos\\pp2\\pp2\\pp2.csproj",
+  "projectFilePath": "C:\\Users\\hoptd\\source\\repos\\Yarnyan\\pekarnya\\backend\\pp2\\pp2.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hoptd\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\hoptd\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
