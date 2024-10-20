@@ -32,9 +32,7 @@ export const ADMIN_USER: IAccordionItem[] = [
         icon: PeopleIcon,
         content: 'Содержимое для Персонала',
         links: [
-            { text: 'Сотрудники', link: '/personnel/employees' },
-            { text: 'Роли', link: '/personnel/roles' },
-            { text: 'Права доступа', link: '/personnel/permissions' }
+            { text: 'Информация', link: '/personnel/employees' },
         ]
     },
     {
