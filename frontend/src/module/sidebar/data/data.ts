@@ -5,6 +5,7 @@ import MenuBookIcon from '@mui/icons-material/MenuBook';
 import CakeIcon from '@mui/icons-material/Cake';
 import { SvgIconComponent } from '@mui/icons-material';
 import PieChartIcon from '@mui/icons-material/PieChart';
+import BreakfastDiningIcon from '@mui/icons-material/BreakfastDining';
 
 interface ILink {
     text: string;
@@ -32,9 +33,7 @@ export const ADMIN_USER: IAccordionItem[] = [
         icon: PeopleIcon,
         content: 'Содержимое для Персонала',
         links: [
-            { text: 'Сотрудники', link: '/personnel/employees' },
-            { text: 'Роли', link: '/personnel/roles' },
-            { text: 'Права доступа', link: '/personnel/permissions' }
+            { text: 'Информация', link: '/personnel/employees' },
         ]
     },
     {
@@ -63,7 +62,7 @@ export const ADMIN_USER: IAccordionItem[] = [
         content: 'Содержимое для Тортов',
         links: [
             { text: 'Вкусы и составы', link: '/cakes/view' },
-            { text: 'Оформления', link: '/cakes/add' },
+            { text: 'Оформления', link: '/cakes/design' },
         ]
     },
     {
@@ -71,8 +70,16 @@ export const ADMIN_USER: IAccordionItem[] = [
         icon: PieChartIcon,
         content: 'Содержимое для Тортов',
         links: [
-            { text: 'Создание', link: '/pie/view' },
+            { text: 'Создание', link: '/pie/create' },
             { text: 'Комментарий', link: '/pie/add' },
         ]
     },
+    {
+        text: 'Пекарня',
+        icon: BreakfastDiningIcon,
+        content: 'Содержимое для Пекарни',
+        links: [
+            { text: 'Создание пекарни', link: '/bakery/create' },
+        ]
+    }
 ];
