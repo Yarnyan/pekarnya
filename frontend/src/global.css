@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root {
+  --bgColor: #f7f7f9;
+  --sideBarColor: #f9f9f9;
+  --iconHoverColor: #e0e0e0;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--sideBarColor); 
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--hoverColor);
+  border-radius: 6px;
+  border: 3px solid var(--sideBarColor); 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--borderColor);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--hoverColor) var(--sideBarColor);
+}
