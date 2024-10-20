@@ -26,6 +26,7 @@ export const ADMIN_USER: IAccordionItem[] = [
         content: 'Содержимое для Настройки',
         links: [
             { text: 'Музыка', link: '/settings/music' },
+            { text: "Задачи", link: 'settings/task'}
         ]
     },
     {
