@@ -59,7 +59,6 @@ const data: Personal[] = [
 export const BakeryTable = ({ onOpen }: Props) => {
     const fetchWithToken = async () => {
         const token = localStorage.getItem('token');
-        console.log(token)
         const response = await fetch('http://localhost:5137/api/Bakery/bakery', {
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -77,16 +76,20 @@ export const BakeryTable = ({ onOpen }: Props) => {
     if (isLoading) {
         return <Loader />
     }
+    if (error) {
+        return <p className="text-center text-red-500 mt-8 text-[20px] font-medium">Error: {error.message}</p>;
+    }
+
     console.log(data)
     return (
         <div className="mt-8">
             <div className="w-full flex justify-end">
                 <button onClick={onOpen} className="p-2 bg-[#6495ED] w-[100px] text-[#fff] text-[14px rounded hover:bg-[#728FCE] duration-300">Создать</button>
             </div>
-            {/* <div className="mt-4">
+            <div className="mt-4">
                 <CustomTable
                     columnNames={['Номер', 'Название', 'Адрес']}
-                    rows={data.map(row => {
+                    rows={data.map((row): any => {
                         return <TableRow
                             key={row.id}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -97,7 +100,7 @@ export const BakeryTable = ({ onOpen }: Props) => {
                         </TableRow>
                     })}
                 />
-            </div> */}
+            </div>
         </div>
     );
 };
