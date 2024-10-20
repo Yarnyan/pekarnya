@@ -18,7 +18,12 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+<<<<<<< HEAD
     "noFallthroughCasesInSwitch": true
+=======
+    "noFallthroughCasesInSwitch": true,
+    "allowSyntheticDefaultImports": true
+>>>>>>> 08edd89679a3d576e211f84a4f1a5286ddba21fc
   },
   "include": ["src"]
 }
