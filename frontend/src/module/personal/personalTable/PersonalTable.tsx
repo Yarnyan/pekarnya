@@ -138,7 +138,7 @@ export const PersonalTable = () => {
                     </TableRow>
                 })}
             />
-            <Modal open={isOpen}>
+            <Modal open={isOpen} onClose={() => setIsOpen(false)} sx={{display: "flex", alignItems: "center"}}>
                 <PersonalModal/>
             </Modal>
         </Box>

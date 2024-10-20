@@ -2,7 +2,7 @@ import Select from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
 import { Controller, FieldValues, RegisterOptions } from 'react-hook-form'
 import InputLabel from '@mui/material/InputLabel'
-import { SxProps, Theme } from '@mui/material'
+import {FormControl, SxProps, Theme} from '@mui/material'
 
 interface ControlledSelectProps {
   name: string
@@ -26,7 +26,7 @@ export const ControlledSelect = (
       name={name}
       rules={rules}
       render={({ field: { value = [options[0].value], onBlur, onChange } }) => (
-        <div>
+        <FormControl>
           <InputLabel style={{margin: '0 5px'}} id={label}>{label}</InputLabel>
           <Select
             style={{margin: '0 5px'}}
@@ -47,7 +47,7 @@ export const ControlledSelect = (
               return <MenuItem key={option.content} value={option.value}>{option.content}</MenuItem>
             })}
           </Select>
-        </div>
+        </FormControl>
       )}
     />
   )
