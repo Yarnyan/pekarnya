@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -78,6 +79,14 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
+builder.Services.AddCors(delegate (CorsOptions c)
+{
+    c.AddPolicy("AllowOrigin", delegate (CorsPolicyBuilder options)
+    {
+        options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+    });
+});
+
 builder.Services.AddControllers();
 
 var app = builder.Build();
@@ -90,6 +99,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
     app.ApplyMigrations();
 }
+
+app.UseCors(delegate (CorsPolicyBuilder x)
+{
+    x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+});
 
 DbContextInitializer.InitializeDbContext(context);
 
