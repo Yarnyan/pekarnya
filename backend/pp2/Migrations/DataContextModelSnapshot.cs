@@ -130,8 +130,22 @@ namespace pp2.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("PIN")
+                    b.Property<int>("BakeryId")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("text");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool>("Hidden")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("PIN")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("RefreshToken")
                         .HasColumnType("text");
@@ -139,12 +153,9 @@ namespace pp2.Migrations
                     b.Property<DateTime?>("RefreshTokenExpiryTime")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<int>("RoleId")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("RoleId");
+                    b.HasIndex("BakeryId");
 
                     b.ToTable("Users");
                 });
@@ -161,7 +172,12 @@ namespace pp2.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Roles");
                 });
@@ -179,18 +195,30 @@ namespace pp2.Migrations
 
             modelBuilder.Entity("pp2.Models.User", b =>
                 {
-                    b.HasOne("pp2.Models.UserRole", "Role")
+                    b.HasOne("pp2.Models.BakeryModel", "BakeryModel")
                         .WithMany()
-                        .HasForeignKey("RoleId")
+                        .HasForeignKey("BakeryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Role");
+                    b.Navigation("BakeryModel");
+                });
+
+            modelBuilder.Entity("pp2.Models.UserRole", b =>
+                {
+                    b.HasOne("pp2.Models.User", null)
+                        .WithMany("Roles")
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("pp2.Models.TaskPoolModel", b =>
                 {
                     b.Navigation("Tasks");
+                });
+
+            modelBuilder.Entity("pp2.Models.User", b =>
+                {
+                    b.Navigation("Roles");
                 });
 #pragma warning restore 612, 618
         }

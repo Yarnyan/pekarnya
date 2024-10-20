@@ -12,5 +12,7 @@ namespace pp2.Helpers.Interfaces
         public Task<TaskModel> CreateTaskAsync(TaskCreate create);
 
         public Task DeleteTaskAsync(int taskId);
+
+        public Task<List<TaskPoolModel>> GetAllAsync();
     }
 }

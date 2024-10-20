@@ -33,49 +33,57 @@ namespace pp2.Controllers
         [Route("login")]
         public async Task<IActionResult> Login([FromForm] LoginModel model)
         {
-            var users = await _userHelper.GetUsersByPINAsync(model.PIN);
-            if (users.Count > 0)
-            {
-                User? user = null;
-                if (model.RoleId == null && users.Count > 1)
-                    return Ok(new { Roles = users.Select(x => x.Role).ToArray() });
-                else if (users.Count == 1)
-                   user = users[0];
-                else if(model.RoleId != null)
-                    user = users.Where(x => x.RoleId == model.RoleId).FirstOrDefault();
+            var user = await _userHelper.GetUserByPINAsync(model.PIN);
 
-                if (user == null)
-                    return Unauthorized();
+            if (user == null)
+                return Unauthorized();
+            /*  for single roles
+             * if (model.RoleId == null && users.Count > 1)
+                return Ok(new { Roles = users.Select(x => x.Role).ToArray() });
+            else if (users.Count == 1)
+               user = users[0];
+            else if(model.RoleId != null)
+                user = users.Where(x => x.RoleId == model.RoleId).FirstOrDefault(); */
 
-                var role = await _roleHelper.GetById(user.RoleId);
-                if (role == null)
-                    return Unauthorized();
+            int? roleId = null;
 
-                var authClaims = new List<Claim>
+            if (model.RoleId == null && user.Roles.Count > 1)
+                return Ok(new { Roles = user.Roles });
+            else if (model.RoleId != null && user.Roles.Count > 1 && user.Roles.Any(x => x.Id == roleId))
+                roleId = model.RoleId;
+            else if(user.Roles.Count > 0)
+                roleId = user.Roles[0].Id;
+
+            if (user == null || roleId == null)
+                return Unauthorized();
+
+            var role = await _roleHelper.GetById((int)roleId);
+            if (role == null)
+                return Unauthorized();
+
+            var authClaims = new List<Claim>
                 {
                     new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                     new Claim(ClaimTypes.Role, role.Name.ToString())
                 };
 
-                var token = CreateToken(authClaims);
-                var refreshToken = GenerateRefreshToken();
+            var token = CreateToken(authClaims);
+            var refreshToken = GenerateRefreshToken();
 
-                _ = int.TryParse(_configuration["JWT:RefreshTokenValidityInDays"], out int refreshTokenValidityInDays);
+            _ = int.TryParse(_configuration["JWT:RefreshTokenValidityInDays"], out int refreshTokenValidityInDays);
 
-                user.RefreshToken = refreshToken; //todo: нужна ли авторизация одновременно на нескольких устройствах под одной учеткой?
-                user.RefreshTokenExpiryTime = DateTime.Now.AddDays(refreshTokenValidityInDays);
+            user.RefreshToken = refreshToken; //todo: нужна ли авторизация одновременно на нескольких устройствах под одной учеткой?
+            user.RefreshTokenExpiryTime = DateTime.Now.AddDays(refreshTokenValidityInDays);
 
-                await _userHelper.UpdateAsync(user);
+            await _userHelper.UpdateAsync(user);
 
-                return Ok(new
-                {
-                    Token = new JwtSecurityTokenHandler().WriteToken(token),
-                    RefreshToken = refreshToken,
-                    Expiration = token.ValidTo
-                });
-            }
-            return Unauthorized();
+            return Ok(new
+            {
+                Token = new JwtSecurityTokenHandler().WriteToken(token),
+                RefreshToken = refreshToken,
+                Expiration = token.ValidTo
+            });
         }
 
         /*[HttpPost]
@@ -99,7 +107,7 @@ namespace pp2.Controllers
             return Ok(new Response { Status = "Success", Message = "User created successfully!" });
         } */
 
-        [HttpPost]
+                [HttpPost]
         [Route("refresh-token")]
         public async Task<IActionResult> RefreshToken([FromForm] TokenModel tokenModel)
         {
