@@ -1,5 +1,6 @@
 ﻿using pp2.Database;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace pp2.Models
 {
@@ -11,5 +12,8 @@ namespace pp2.Models
 
         [Required]
         public string Name { get; set; }
+
+        [JsonIgnore]
+        public ICollection<User> Users { get; set; } = new List<User>();
     }
 }
