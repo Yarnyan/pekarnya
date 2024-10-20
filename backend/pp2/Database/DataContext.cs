@@ -26,6 +26,10 @@ namespace pp2.Database
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<User>()
+            .HasMany(u => u.Roles)
+            .WithMany(r => r.Users);
+
             base.OnModelCreating(modelBuilder);
         }
 

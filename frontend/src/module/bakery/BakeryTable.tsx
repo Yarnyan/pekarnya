@@ -57,14 +57,24 @@ const data: Personal[] = [
 ]
 
 export const BakeryTable = ({ onOpen }: Props) => {
-    const { isLoading, error, data } = useQuery(
-        'repoData',
-        () =>
-            fetch(
-                'http://localhost:5137/api/Bakery/bakery'
-            ).then((response) => response.json())
-    );
-    if(isLoading) {
+    const fetchWithToken = async () => {
+        const token = localStorage.getItem('token');
+        console.log(token)
+        const response = await fetch('http://localhost:5137/api/Bakery/bakery', {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "ngrok-skip-browser-warning": "*"
+            },
+        });
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    };
+
+    const { isLoading, error, data } = useQuery('repoData', fetchWithToken);
+
+    if (isLoading) {
         return <Loader />
     }
     console.log(data)
