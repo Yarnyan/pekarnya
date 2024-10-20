@@ -3,6 +3,7 @@ import {ControlledTextField} from "../../../components/controlled-text-field/Con
 import {ControlledSelect} from "../../../components/controlled-select/Controlled-select.tsx";
 import styles from './PersonalModal.module.css'
 import {Button} from "@mui/material";
+import {useForceUpdate} from "../../../hooks/useForceUpdate.tsx";
 
 interface Inputs {
     name: string
@@ -12,10 +13,13 @@ interface Inputs {
 }
 
 export const PersonalModal = () => {
+    const forceUpdate = useForceUpdate()
+
     const formMethods = useForm<Inputs>({mode: 'onChange'})
 
     const {
         handleSubmit,
+        getValues
     } = formMethods
 
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
@@ -46,23 +50,54 @@ export const PersonalModal = () => {
                             required: 'Поле не заполнено',
                         }}
                     />
-                    <ControlledTextField
+                    <ControlledSelect
                         sx={{
                             width: '90%',
                         }}
                         labelType='moving'
                         type='email'
                         name='email'
-                        label='email'
+                        label='Email'
                         InputProps={{
                             sx: {
                                 borderRadius: '12px',
                             },
                         }}
+                        handleChange={() => forceUpdate()}
+                        label='Роль'
+                        name='role'
+                        options={
+                            [
+                                {value: 'Пекарь', content: 'Пекарь'},
+                                {value: 'Управляющий', content: 'Управляющий'},
+                                {value: 'Кассир', content: 'Кассир'},
+                                {value: 'Кондитер', content: 'Кондитер'},
+                            ]
+                        }
                         rules={{
                             required: 'Поле не заполнено',
                         }}
                     />
+                    {
+                        getValues().role === "Управляющий" &&
+                        <ControlledTextField
+                            sx={{
+                                width: '100%',
+                            }}
+                            labelType='moving'
+                            type='email'
+                            name='email'
+                            label='email'
+                            InputProps={{
+                                sx: {
+                                    borderRadius: '12px',
+                                },
+                            }}
+                            rules={{
+                                required: 'Поле не заполнено',
+                            }}
+                        />
+                    }
                     <>
                         <ControlledTextField
                             sx={{

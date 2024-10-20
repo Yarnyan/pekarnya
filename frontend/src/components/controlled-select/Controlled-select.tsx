@@ -15,11 +15,12 @@ interface ControlledSelectProps {
   label?: string
   disabled?: boolean
   handleBlur?: () => void
+    handleChange?: () => void
 }
 
 export const ControlledSelect = (
   {
-    name, rules = { required: 'Поле не заполнено' }, options, label, sx, disabled, handleBlur
+    name, rules = { required: 'Поле не заполнено' }, options, label, sx, disabled, handleBlur, handleChange
   }: ControlledSelectProps) => {
   return (
     <Controller
@@ -41,7 +42,10 @@ export const ControlledSelect = (
               }
               onBlur()
             }}
-            onChange={(e) => onChange(e.target.value)}
+            onChange={(e) => {
+                onChange(e.target.value)
+                handleChange()
+            }}
           >
             {options.map(option => {
               return <MenuItem key={option.content} value={option.value}>{option.content}</MenuItem>
