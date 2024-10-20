@@ -1,0 +1,16 @@
+export const styleModal = {
+    position: 'absolute' as 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: '98%',
+    maxWidth: 400,
+    bgcolor: '#ffffff',
+    borderRadius: '20px',
+    maxHeight: '70dvh',
+    boxShadow: 24,
+    overflowY: 'auto',
+    pt: 2,
+    px: 4,
+    pb: 3,
+};
