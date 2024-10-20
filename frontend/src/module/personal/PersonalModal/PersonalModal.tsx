@@ -26,12 +26,12 @@ export const PersonalModal = () => {
         <div className={styles.container} onClick={(e) => e.stopPropagation()}>
             <FormProvider {...formMethods}>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <h3 className={styles.title}>
+                    <h3>
                         Создать пользователя
                     </h3>
                     <ControlledTextField
                         sx={{
-                            width: '100%',
+                            width: '90%',
                         }}
                         labelType='moving'
                         type='text'
@@ -48,7 +48,7 @@ export const PersonalModal = () => {
                     />
                     <ControlledTextField
                         sx={{
-                            width: '100%',
+                            width: '90%',
                         }}
                         labelType='moving'
                         type='email'
@@ -66,7 +66,7 @@ export const PersonalModal = () => {
                     <>
                         <ControlledTextField
                             sx={{
-                                width: '100%',
+                                width: '90%',
                             }}
                             labelType='moving'
                             type='text'
@@ -85,8 +85,8 @@ export const PersonalModal = () => {
                             sx={{
                                 width: '320px',
                             }}
-                            label='Роль'
-                            name='role'
+                            label='Требуемый опыт'
+                            name='experience'
                             options={
                                 [
                                     {value: 'Пекарь', content: 'Пекарь'},
@@ -100,7 +100,7 @@ export const PersonalModal = () => {
                             }}
                         />
                     </>
-                    <Button type={'submit'} variant={'contained'}>Принять</Button>
+                    <Button type={'submit'}>Принять</Button>
                 </form>
             </FormProvider>
         </div>

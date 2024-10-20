@@ -14,11 +14,10 @@ form {
     align-items: center;
     flex-direction: column;
     gap: 20px;
-    width: 320px;
 }
 
-.title {
+h3 {
     font-size: 24px;
-    font-weight: 600;
-    line-height: 30px;
+    font-weight: 700;
+    line-height: 29px;
 }

@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\hoptd\\source\\repos\\pp2\\pp2\\pp2.csproj": {}
+    "C:\\www\\pekarnya\\backend\\pp2\\pp2.csproj": {}
   },
   "projects": {
-    "C:\\Users\\hoptd\\source\\repos\\pp2\\pp2\\pp2.csproj": {
+    "C:\\www\\pekarnya\\backend\\pp2\\pp2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hoptd\\source\\repos\\pp2\\pp2\\pp2.csproj",
+        "projectUniqueName": "C:\\www\\pekarnya\\backend\\pp2\\pp2.csproj",
         "projectName": "pp2",
-        "projectPath": "C:\\Users\\hoptd\\source\\repos\\pp2\\pp2\\pp2.csproj",
-        "packagesPath": "C:\\Users\\hoptd\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hoptd\\source\\repos\\pp2\\pp2\\obj\\",
+        "projectPath": "C:\\www\\pekarnya\\backend\\pp2\\pp2.csproj",
+        "packagesPath": "C:\\Users\\lolik\\.nuget\\packages\\",
+        "outputPath": "C:\\www\\pekarnya\\backend\\pp2\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\hoptd\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\lolik\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -38,11 +38,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -115,7 +110,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.205/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
