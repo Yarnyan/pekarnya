@@ -23,5 +23,10 @@ namespace pp2.Helpers
         {
             await DeleteById(Id);
         }
+
+        public async Task<List<FormModel>> GetAllAsync()
+        {
+            return await GetAll();
+        }
     }
 }

@@ -22,5 +22,10 @@ namespace pp2.Helpers
         {
             await DeleteById(backeryId);
         }
+
+        public async Task<List<BakeryModel>> GetAllAsync()
+        {
+            return await GetAll();
+        }
     }
 }

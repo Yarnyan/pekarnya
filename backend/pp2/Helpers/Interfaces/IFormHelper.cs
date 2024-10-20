@@ -7,5 +7,7 @@ namespace pp2.Helpers.Interfaces
         public Task<FormModel> CreateFormAsync(string value);
 
         public Task RemoveFormByIdAsync(int Id);
+
+        public Task<List<FormModel>> GetAllAsync();
     }
 }

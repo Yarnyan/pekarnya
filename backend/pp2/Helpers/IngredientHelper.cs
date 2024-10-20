@@ -23,5 +23,10 @@ namespace pp2.Helpers
         {
             await DeleteById(Id);
         }
+
+        public async Task<List<IngredientModel>> GetAllAsync()
+        {
+            return await GetAll();
+        }
     }
 }

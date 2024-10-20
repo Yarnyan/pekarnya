@@ -13,9 +13,9 @@ using System.Reflection;
 
 [assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("bad0096a-442e-45ad-8e9b-54b0a55bf022")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("pp2")]
-[assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
+[assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+728188640af5084dc16d3de7bc86264b38b56f2c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+80a4a0d48ee7a84b397eac7c622784702454a32b")]
 [assembly: System.Reflection.AssemblyProductAttribute("pp2")]
 [assembly: System.Reflection.AssemblyTitleAttribute("pp2")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

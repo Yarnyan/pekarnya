@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using pp2.Helpers;
 using pp2.Helpers.Interfaces;
 using pp2.Models.Requests;
 
@@ -18,7 +19,7 @@ namespace pp2.Controllers
         }
 
         [HttpPost]
-        [Route("/ingredient")]
+        [Route("ingredient")]
         [Authorize(Roles = "Manager")]
         public async Task<IActionResult> CreateIngredient([FromForm] IngredientCreate req)
         {
@@ -28,7 +29,7 @@ namespace pp2.Controllers
         }
 
         [HttpDelete]
-        [Route("/ingredient")]
+        [Route("ingredient")]
         [Authorize(Roles = "Manager")]
         public async Task<IActionResult> DeleteIngredient([FromForm] int id)
         {
@@ -38,7 +39,7 @@ namespace pp2.Controllers
         }
 
         [HttpPost]
-        [Route("/form")]
+        [Route("form")]
         [Authorize(Roles = "Manager")]
         public async Task<IActionResult> CreateForm([FromForm] FormCreate req)
         {
@@ -48,13 +49,29 @@ namespace pp2.Controllers
         }
 
         [HttpDelete]
-        [Route("/form")]
+        [Route("form")]
         [Authorize(Roles = "Manager")]
         public async Task<IActionResult> DeleteForm([FromForm] int id)
         {
             await _formHelper.RemoveFormByIdAsync(id);
 
             return Ok();
+        }
+
+        [HttpGet]
+        [Route("ingredient")]
+        [Authorize(Roles = "Manager")]
+        public async Task<IActionResult> GetIngredients()
+        {
+            return Ok(new { Data = await _ingredientHelper.GetAllAsync() });
+        }
+
+        [HttpGet]
+        [Route("form")]
+        [Authorize(Roles = "Manager")]
+        public async Task<IActionResult> GetForms()
+        {
+            return Ok(new { Data = await _formHelper.GetAllAsync() });
         }
     }
 }

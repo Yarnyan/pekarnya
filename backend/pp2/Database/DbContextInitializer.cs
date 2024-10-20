@@ -10,7 +10,7 @@ namespace pp2.Database
             AddEntityIfNotExist(new UserRole() { Id = 2, Name = "Cashier" });
             AddEntityIfNotExist(new UserRole() { Id = 3, Name = "Baker" });
 
-            AddEntityIfNotExist(new User() { PIN = 0000, RoleId = 1 }); //root
+            //AddEntityIfNotExist(new User() { PIN = "0000", RoleId = 1 }); //root
 
             void AddEntityIfNotExist<T>(T entity) where T : class, IEntity
             {
