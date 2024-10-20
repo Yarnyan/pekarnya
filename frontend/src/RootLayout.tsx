@@ -6,25 +6,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="bg-[var(--bgColor)]">
-        <main className="flex relative flex-column">
-          <div className="absolute">
-            <SideBar />
-          </div>
-          <div className="w-full">
-            <div className="flex-1 overflow-x-hidden min-h-screen ml-20 sm:ml-0">
-              <div className="flex flex-col justify-between px-4 sm:px-2 pt-4">
-                <div className="max-w-7xl self-center w-full flex flex-col">
-                  <Header />
-                  {children}
-                </div>
-              </div>
+    <main className="flex relative flex-column">
+      <div className="absolute">
+        <SideBar />
+      </div>
+      <div className="w-full">
+        <div className="flex-1 overflow-x-hidden min-h-screen ml-20 sm:ml-0">
+          <div className="flex flex-col justify-between px-4 sm:px-2 pt-4">
+            <div className="max-w-7xl self-center w-full flex flex-col">
+              <Header />
+              {children}
             </div>
           </div>
-        </main>
-      </body>
-    </html>
+        </div>
+      </div>
+    </main>
   );
 }
 
