@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using pp2.Helpers;
 using pp2.Helpers.Interfaces;
 using pp2.Models.Requests;
 
@@ -14,7 +15,7 @@ namespace pp2.Controllers
         }
 
         [HttpPost]
-        [Route("/pool")]
+        [Route("pool")]
         [Authorize(Roles = "Manager")]
         public async Task<IActionResult> CreatePool([FromForm] string name)
         {
@@ -24,7 +25,7 @@ namespace pp2.Controllers
         }
 
         [HttpDelete]
-        [Route("/pool")]
+        [Route("pool")]
         [Authorize(Roles = "Manager")]
         public async Task<IActionResult> DeletePool([FromForm] int id)
         {
@@ -34,7 +35,7 @@ namespace pp2.Controllers
         }
 
         [HttpPost]
-        [Route("/task")]
+        [Route("task")]
         [Authorize(Roles = "Manager")]
         public async Task<IActionResult> CreateTask([FromForm] TaskCreate create)
         {
@@ -44,13 +45,21 @@ namespace pp2.Controllers
         }
 
         [HttpDelete]
-        [Route("/task")]
+        [Route("task")]
         [Authorize(Roles = "Manager")]
         public async Task<IActionResult> DeleteTask([FromForm] int id)
         {
             await _taskHelper.DeleteTaskAsync(id);
 
             return Ok();
+        }
+
+        [HttpGet]
+        [Route("pool")]
+        [Authorize(Roles = "Manager")]
+        public async Task<IActionResult> GetForms()
+        {
+            return Ok(new { Data = await _taskHelper.GetAllAsync() });
         }
     }
 }

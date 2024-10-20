@@ -11,12 +11,20 @@ namespace pp2.Models
         [Key]
         public int Id { get; set; }
 
-        public int PIN { get; set; }
+        public string PIN { get; set; }
 
-        public int RoleId { get; set; }
-        
-        [ForeignKey("RoleId")]
-        public UserRole Role { get; set; }
+        public string FullName { get; set; }
+
+        public int BakeryId { get; set; }
+
+        [ForeignKey("BakeryId")]
+        public BakeryModel BakeryModel { get; set; }
+
+        public string? Email { get; set; }
+
+        public bool Hidden { get; set; } = false;
+
+        public List<UserRole> Roles { get; set; } = new List<UserRole>();
 
         public string? RefreshToken { get; set; }    
 

@@ -34,5 +34,13 @@ namespace pp2.Controllers
 
             return Ok();
         }
+
+        [HttpGet]
+        [Route("bakery")]
+        [Authorize(Roles = "Manager")]
+        public async Task<IActionResult> GetBakeries()
+        {
+            return Ok(new { Data = await _bakeryHelper.GetAllAsync() });
+        }
     }
 }

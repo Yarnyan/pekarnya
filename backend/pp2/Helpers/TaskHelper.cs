@@ -4,6 +4,7 @@ using pp2.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Runtime.InteropServices;
 using pp2.Helpers.Interfaces;
+using System.Xml.Linq;
 
 namespace pp2.Helpers
 {
@@ -44,6 +45,11 @@ namespace pp2.Helpers
         public async Task DeleteTaskAsync(int taskId)
         {
             await DeleteById(taskId);
+        }
+
+        public async Task<List<TaskPoolModel>> GetAllAsync()
+        {
+            return await dbRepository.Get<TaskPoolModel>().Include(x => x.Tasks).ToListAsync();
         }
     }
 }

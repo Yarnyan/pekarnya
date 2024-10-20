@@ -7,5 +7,7 @@ namespace pp2.Helpers.Interfaces
         public Task<IngredientModel> CreateIngredientAsync(string value);
 
         public Task RemoveIngredientByIdAsync(int Id);
+
+        public Task<List<IngredientModel>> GetAllAsync();
     }
 }

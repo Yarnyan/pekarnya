@@ -6,7 +6,7 @@ namespace pp2.Models.Requests
     public class LoginModel
     {
         [Required(ErrorMessage = "PIN is required")]
-        public int PIN { get; set; }
+        public string PIN { get; set; }
 
         public int? RoleId { get; set; }
     }

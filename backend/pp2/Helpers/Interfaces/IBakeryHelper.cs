@@ -8,5 +8,7 @@ namespace pp2.Helpers.Interfaces
         public Task<BakeryModel> CreateAsync(BakeryCreate req);
 
         public Task DeleteAsync(int backeryId);
+
+        public Task<List<BakeryModel>> GetAllAsync();
     }
 }
