@@ -50,6 +50,16 @@ namespace pp2.Controllers
             return Ok(new { Data = users });
         }
 
+        [HttpPatch]
+        [Route("changeVisible")]
+        [Authorize(Roles = "Manager")]
+        public async Task<IActionResult> UpdateVisible([FromForm] UserVisibleUpdate visibleUpdate)
+        {
+            await _userHelper.UpdateUserVisible(visibleUpdate.UserId, visibleUpdate.Hidden);
+
+            return Ok();
+        }
+
         [HttpDelete]
         [Route("user")]
         [Authorize(Roles = "Manager")]
