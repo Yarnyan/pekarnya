@@ -10,7 +10,7 @@ import { ADMIN_USER } from './data/data';
 type Props = {}
 
 export default function SideBar({ }: Props) {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const sidebarRef = useRef<HTMLDivElement | null>(null);
   const [openAccordion, setOpenAccordion] = useState<number | null>(null);
   const toggleSidebar = () => {

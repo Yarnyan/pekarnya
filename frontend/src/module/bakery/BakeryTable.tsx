@@ -77,7 +77,7 @@ export const BakeryTable = ({ onOpen }: Props) => {
         return <Loader />
     }
     if (error) {
-        return <p className="text-center text-red-500 mt-8 text-[20px] font-medium">Error: {error.message}</p>;
+        return <p className="text-center text-red-500 mt-8 text-[20px] font-medium">Error: {error?.message}</p>;
     }
 
     console.log(data)
@@ -89,16 +89,17 @@ export const BakeryTable = ({ onOpen }: Props) => {
             <div className="mt-4">
                 <CustomTable
                     columnNames={['Номер', 'Название', 'Адрес']}
-                    rows={data.map((row): any => {
+                    rows={data && data.length > 0 ? data.map((row) => {
+                        console.log(row)
                         return <TableRow
                             key={row.id}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
+                            <TableCell align="left">{row.id}</TableCell>
+                            <TableCell align="left">{row.address || "no address"}</TableCell>
                             <TableCell align="left">{row.name}</TableCell>
-                            <TableCell align="left">{row.email || "no Email"}</TableCell>
-                            <TableCell align="left">{row.bakery}</TableCell>
                         </TableRow>
-                    })}
+                    }) : []}
                 />
             </div>
         </div>
