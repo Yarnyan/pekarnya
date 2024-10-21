@@ -47,5 +47,17 @@ namespace pp2.Helpers
 
             return await users.ToListAsync();
         }
+
+        public async Task UpdateUserVisible(int userId, bool hidden)
+        {
+            var user = await dbRepository.Get<User>(x => x.Id == userId).FirstOrDefaultAsync();
+
+            if (user != null)
+            {
+                user.Hidden = hidden;
+                await dbRepository.Update(user);
+                await dbRepository.SaveChangesAsync();
+            }
+        }
     }
 }

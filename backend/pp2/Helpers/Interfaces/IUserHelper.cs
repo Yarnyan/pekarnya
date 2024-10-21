@@ -11,5 +11,7 @@ namespace pp2.Helpers.Interfaces
         public Task<User?> GetUserByPINAsync(string pin);
 
         public Task<List<User>> GetUsersByFilters(int? bakeryId, int? roleId, bool hidden = true);
+
+        public Task UpdateUserVisible(int userId, bool hidden);
     }
 }
