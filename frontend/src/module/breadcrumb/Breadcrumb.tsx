@@ -13,6 +13,11 @@ const translations: { [key: string]: string } = {
   'create': 'создание',
   'add': 'добавить',
   'bakery': 'пекарня',
+  'menu': 'меню',
+  'information': 'информация',
+  'task': 'задачи',
+  'personnel': 'персонал',
+  'employees': 'сотрудники'
 };
 
 const capitalizeFirstLetter = (string: string) => {

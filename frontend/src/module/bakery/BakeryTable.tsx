@@ -1,5 +1,7 @@
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import { CustomTable } from "../customTable/CustomTable";
+import { useQuery } from 'react-query';
+import Loader from "../../components/loader/Loader";
 
 type Props = {
     onOpen: () => void;
@@ -50,11 +52,35 @@ const data: Personal[] = [
         email: 'vanya228@mail.ru',
         role: 'Администратор',
         visible: true,
-        id: '5' 
+        id: '5'
     }
 ]
 
-export const BakeryTable = ({onOpen}: Props) => {
+export const BakeryTable = ({ onOpen }: Props) => {
+    const fetchWithToken = async () => {
+        const token = localStorage.getItem('token');
+        const response = await fetch('http://localhost:5137/api/Bakery/bakery', {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "ngrok-skip-browser-warning": "*"
+            },
+        });
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    };
+
+    const { isLoading, error, data } = useQuery('repoData', fetchWithToken);
+
+    if (isLoading) {
+        return <Loader />
+    }
+    if (error) {
+        return <p className="text-center text-red-500 mt-8 text-[20px] font-medium">Error: {error.message}</p>;
+    }
+
+    console.log(data)
     return (
         <div className="mt-8">
             <div className="w-full flex justify-end">
@@ -63,7 +89,7 @@ export const BakeryTable = ({onOpen}: Props) => {
             <div className="mt-4">
                 <CustomTable
                     columnNames={['Номер', 'Название', 'Адрес']}
-                    rows={data.map(row => {
+                    rows={data.map((row): any => {
                         return <TableRow
                             key={row.id}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}

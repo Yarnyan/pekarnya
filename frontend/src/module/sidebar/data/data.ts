@@ -52,7 +52,7 @@ export const ADMIN_USER: IAccordionItem[] = [
         icon: MenuBookIcon,
         content: 'Содержимое для Меню',
         links: [
-            { text: 'Информация', link: '/menu' },
+            { text: 'Информация', link: '/menu/information' },
         ]
     },
     {

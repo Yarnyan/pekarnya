@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("pp2")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+80a4a0d48ee7a84b397eac7c622784702454a32b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2e27dee245f6962f7d020a277ea5b15c12f592ec")]
 [assembly: System.Reflection.AssemblyProductAttribute("pp2")]
 [assembly: System.Reflection.AssemblyTitleAttribute("pp2")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
